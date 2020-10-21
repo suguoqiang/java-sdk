@@ -2,6 +2,8 @@
 [![@qiniu on weibo](http://img.shields.io/badge/weibo-%40qiniutek-blue.svg)](http://weibo.com/qiniutek)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
 [![Build Status](https://travis-ci.org/qiniu/java-sdk.svg)](https://travis-ci.org/qiniu/java-sdk)
+[![GitHub release](https://img.shields.io/github/v/tag/qiniu/java-sdk.svg?label=release)](https://github.com/qiniu/java-sdk/releases)
+[![Coverage Status](https://codecov.io/gh/qiniu/java-sdk/branch/master/graph/badge.svg)](https://codecov.io/gh/qiniu/java-sdk)
 [![Latest Stable Version](https://img.shields.io/maven-central/v/com.qiniu/qiniu-java-sdk.svg)](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.qiniu%22%20AND%20a%3A%22qiniu-java-sdk%22)
 ## 安装
 
@@ -10,12 +12,12 @@
 <dependency>
   <groupId>com.qiniu</groupId>
   <artifactId>qiniu-java-sdk</artifactId>
-  <version>[7.2.0, 7.2.99]</version>
+  <version>[7.3.0, 7.3.99]</version>
 </dependency>
 ```
 或者 Gradle:
 ```groovy
-compile 'com.qiniu:qiniu-java-sdk:7.2.+'
+compile 'com.qiniu:qiniu-java-sdk:7.3.+'
 ```
 
 ## 运行环境
@@ -28,9 +30,11 @@ JDK 7 及以上
 ```Java
 import com.qiniu.storage.UploadManager;
 import com.qiniu.util.Auth;
+import com.qiniu.storage.Configuration;
 import com.qiniu.http.Response;
 ...
-    UploadManager uploadManager = new UploadManager()
+    Configuration cfg = new Configuration();
+    UploadManager uploadManager = new UploadManager(cfg);
     Auth auth = Auth.create(accessKey, secretKey);
     String token = auth.uploadToken(bucketName);
     Response r = upManager.put("hello world".getBytes(), "yourkey", token);
